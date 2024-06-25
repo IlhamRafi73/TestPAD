@@ -2,24 +2,25 @@ package stepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.LoginPage;
+import pages.DashboardPage;
+import utility.BrowserDriver;
+
+import static org.junit.Assert.assertEquals;
 
 public class LoginStep {
     @Given("the user is on the login page")
     public void UserIsOnLoginPage() {
-        Assert.assertTrue("User is not on the correct URL", LoginPage.isOnCorrectUrl());
+        LoginPage.navigate_to_login_page();
     }
 
-    @When("the user enters valid credentials")
-    public void UserEntersValidCredentials() {
+    @When("the user submit valid credentials")
+    public void UserEntersValidCredentials() throws Throwable {
         LoginPage.sendkeys_username();
         LoginPage.sendkeys_password();
-    }
-
-    @And("the user clicks on the login button")
-    public void UserClicksOnLoginButton() {
         LoginPage.click_login_btn();
     }
 }
